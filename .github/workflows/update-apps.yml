@@ -1,0 +1,34 @@
+name: Update apps.json
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-apps
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate apps.json
+        run: ./update_apps.sh
+
+      - name: Commit if changed
+        run: |
+          if git diff --quiet apps.json; then
+            echo "No new release, nothing to commit"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add apps.json
+          git commit -m "Update apps.json to latest Simple Live release"
+          git push
