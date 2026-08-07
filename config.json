@@ -9,7 +9,8 @@
     "website": "https://github.com/lesir831/sidestore-source",
     "featuredApps": [
       "com.xycz.simple-live",
-      "com.gucooing.piliplus"
+      "com.gucooing.piliplus",
+      "com.example.flutterApplicationMTeam"
     ],
     "apps": [],
     "news": []
@@ -65,6 +66,26 @@
             "NSLocalNetworkUsageDescription": "需要访问本地网络以发现和连接 DLNA 投屏设备",
             "NSPhotoLibraryUsageDescription": "请允许APP保存图片到相册"
           }
+        }
+      }
+    },
+    {
+      "github": {
+        "repository": "JustLookAtNow/pt_mate",
+        "assetPattern": "^pt_mate-.*-unsigned\\.ipa$"
+      },
+      "metadata": {
+        "name": "PT Mate",
+        "bundleIdentifier": "com.example.flutterApplicationMTeam",
+        "developerName": "JustLookAtNow",
+        "subtitle": "PT 私有种子站点伴侣",
+        "localizedDescription": "PT Mate 是使用 Flutter 和 Material Design 3 开发的私有种子站点客户端，支持多种 PT 站点的种子浏览、搜索、收藏和下载管理。\n\n主要功能包括多站聚合搜索、qBittorrent / Transmission 下载器集成、本地中转下载、WebDAV 备份恢复及 Cookie Cloud 同步。使用 Cookie Cloud 时请只连接可信的私有服务，并留意 PT 站点的多 IP 与异地登录风控。",
+        "iconURL": "https://raw.githubusercontent.com/JustLookAtNow/pt_mate/v2.28.0/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024%401x.png",
+        "tintColor": "1D4ED8",
+        "category": "utilities",
+        "appPermissions": {
+          "entitlements": [],
+          "privacy": {}
         }
       }
     }

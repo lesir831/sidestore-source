@@ -7,7 +7,8 @@
   "website": "https://github.com/lesir831/sidestore-source",
   "featuredApps": [
     "com.xycz.simple-live",
-    "com.gucooing.piliplus"
+    "com.gucooing.piliplus",
+    "com.example.flutterApplicationMTeam"
   ],
   "apps": [
     {
@@ -132,6 +133,72 @@
           "minOSVersion": "13.0",
           "sha256": "f0dc312908a5924d076857ebed0a8db4e54910403f82fe51347e685457fafba2",
           "marketingVersion": "1.1.2.2"
+        }
+      ]
+    },
+    {
+      "name": "PT Mate",
+      "bundleIdentifier": "com.example.flutterApplicationMTeam",
+      "developerName": "JustLookAtNow",
+      "subtitle": "PT 私有种子站点伴侣",
+      "localizedDescription": "PT Mate 是使用 Flutter 和 Material Design 3 开发的私有种子站点客户端，支持多种 PT 站点的种子浏览、搜索、收藏和下载管理。\n\n主要功能包括多站聚合搜索、qBittorrent / Transmission 下载器集成、本地中转下载、WebDAV 备份恢复及 Cookie Cloud 同步。使用 Cookie Cloud 时请只连接可信的私有服务，并留意 PT 站点的多 IP 与异地登录风控。",
+      "iconURL": "https://raw.githubusercontent.com/JustLookAtNow/pt_mate/v2.28.0/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024%401x.png",
+      "tintColor": "1D4ED8",
+      "category": "utilities",
+      "appPermissions": {
+        "entitlements": [],
+        "privacy": {}
+      },
+      "versions": [
+        {
+          "version": "2.28.0",
+          "buildVersion": "186",
+          "date": "2026-08-07",
+          "localizedDescription": "## Changes in this release\n# release: 2.28.0\n\n## 🎉Highlights\n\n- 聚合搜索体验升级：统一搜索交互，支持增量结果展示、错误查看及失败站点单独重试。\n- 加固 Android 安全存储保护，并新增异常提示与备份恢复引导。\n\n## ✨新增功能\n\n- 新增 Jpopsuki、杏坛站点支持及杏坛分类。\n- 新增 VR、8K 标签识别。\n\n## 🐛修复问题\n\n- 修复 ruTorrent 保存目录不存在导致任务添加失败、302 错误及列表顺序问题。\n- 修复站点设置操作按钮被悬浮按钮遮挡的问题。\n- 修复 Linux 无 Keyring 环境下的安全存储回退问题。\n- 优化首页站点切换按钮显示。\n\n\n## Secure-storage rollout\n\n- Phase: `phase1`\n- `ENABLE_SECURE_STORAGE_TRANSACTIONS`: `false`\n- Android versionCode: `186`\n- Source commit: `0fe5811acc1481a1590985141d55b6788995da46`\n\n## 📱 Android APK Downloads\n\n- **ARM64 APK** (arm64-v8a): For modern 64-bit devices\n\n## 💻 Desktop Downloads\n\n- **Windows x64**: Windows installer for 64-bit systems\n- **Linux x64**: Linux AppImage for 64-bit systems (portable, no installation required)\n- **macOS x64**: macOS DMG image for 64-bit systems\n- **macOS x64 (app)**: Zipped .app file for manual installation or use on systems where DMG is not preferred\n\n## 🍎 iOS Downloads\n\n- **Unsigned IPA**: For sideloading with tools like AltStore, Sideloadly, etc.\n- **Xcode Archive**: For developers to re-sign and distribute\n",
+          "downloadURL": "https://github.com/JustLookAtNow/pt_mate/releases/download/v2.28.0/pt_mate-2.28.0-unsigned.ipa",
+          "size": 13761318,
+          "minOSVersion": "14.0",
+          "sha256": "d56e55279cfbd9c99467aa8225e4c710febec6334196953f155bca2a90c9617d"
+        },
+        {
+          "version": "2.27.0",
+          "buildVersion": "159",
+          "date": "2026-07-15",
+          "localizedDescription": "## Changes in this release\n# release: 2.27.0\n\n## 🎉Highlights\n- 优化聚合搜索入口与弹窗交互，搜索操作更直观顺手。\n- 改进站点配置排序体验，调整站点顺序时反馈更清晰。\n\n## ✨新增功能\n- 支持 NexusPHP 仅提供分区分类的站点配置解析。\n\n## 🐛修复问题\n- 修复部分 NexusPHP 站点分类结构不完整时无法正确识别分类的问题。\n- 优化搜索弹框交互，减少入口与弹窗状态切换中的不一致体验。\n\n## 📋其它\n- 精简关于页面内容，移除项目能力说明。\n\n\n## 📱 Android APK Downloads\n\n- **ARM64 APK** (arm64-v8a): For modern 64-bit devices\n\n## 💻 Desktop Downloads\n\n- **Windows x64**: Windows installer for 64-bit systems\n- **Linux x64**: Linux AppImage for 64-bit systems (portable, no installation required)\n- **macOS x64**: macOS DMG image for 64-bit systems\n- **macOS x64 (app)**: Zipped .app file for manual installation or use on systems where DMG is not preferred\n\n## 🍎 iOS Downloads\n\n- **Unsigned IPA**: For sideloading with tools like AltStore, Sideloadly, etc.\n- **Xcode Archive**: For developers to re-sign and distribute\n",
+          "downloadURL": "https://github.com/JustLookAtNow/pt_mate/releases/download/v2.27.0/pt_mate-2.27.0-unsigned.ipa",
+          "size": 13503094,
+          "minOSVersion": "14.0",
+          "sha256": "f1908c116a70ab9f50186519c9456d4801b2cf2d906b012aff18608e5a143749"
+        },
+        {
+          "version": "2.26.7",
+          "buildVersion": "158",
+          "date": "2026-07-06",
+          "localizedDescription": "## Changes in this release\n# release: 2.26.7\n\n## 🐛修复问题\n- 修复 Audiences 站点 passkey 匹配识别问题\n\n\n## 📱 Android APK Downloads\n\n- **ARM64 APK** (arm64-v8a): For modern 64-bit devices\n\n## 💻 Desktop Downloads\n\n- **Windows x64**: Windows installer for 64-bit systems\n- **Linux x64**: Linux AppImage for 64-bit systems (portable, no installation required)\n- **macOS x64**: macOS DMG image for 64-bit systems\n- **macOS x64 (app)**: Zipped .app file for manual installation or use on systems where DMG is not preferred\n\n## 🍎 iOS Downloads\n\n- **Unsigned IPA**: For sideloading with tools like AltStore, Sideloadly, etc.\n- **Xcode Archive**: For developers to re-sign and distribute\n",
+          "downloadURL": "https://github.com/JustLookAtNow/pt_mate/releases/download/v2.26.7/pt_mate-2.26.7-unsigned.ipa",
+          "size": 13497361,
+          "minOSVersion": "14.0",
+          "sha256": "88567ec6f0dc4453117ed24e3a2b2cc6f1cdc98b5ebda13e8f423f875496f81d"
+        },
+        {
+          "version": "2.26.6",
+          "buildVersion": "157",
+          "date": "2026-07-06",
+          "localizedDescription": "## Changes in this release\n# release: 2.26.6\n\n## 🎉Highlights\n- 适配海棠 PT 站点，并新增预设配置支持。\n\n## ✨新增功能\n- 新增“海棠PT”预设站点支持（基于 NexusPHPWeb 适配器类型，并提供专属 of infoFinder 与功能配置）。\n\n## 🐛修复问题\n- 修复了聚合站点徽章的布局问题。\n- 优化了聚合搜索关键词通知，避免出现重复或冗余的通知。\n- 优化了暗黑模式下 qBittorrent 下载速度指示器的对比度。\n\n## 📋其它\n- 更新了支持站点文档 `docs/SUPPORTED_SITES.md`。\n\n\n## 📱 Android APK Downloads\n\n- **ARM64 APK** (arm64-v8a): For modern 64-bit devices\n\n## 💻 Desktop Downloads\n\n- **Windows x64**: Windows installer for 64-bit systems\n- **Linux x64**: Linux AppImage for 64-bit systems (portable, no installation required)\n- **macOS x64**: macOS DMG image for 64-bit systems\n- **macOS x64 (app)**: Zipped .app file for manual installation or use on systems where DMG is not preferred\n\n## 🍎 iOS Downloads\n\n- **Unsigned IPA**: For sideloading with tools like AltStore, Sideloadly, etc.\n- **Xcode Archive**: For developers to re-sign and distribute\n",
+          "downloadURL": "https://github.com/JustLookAtNow/pt_mate/releases/download/v2.26.6/pt_mate-2.26.6-unsigned.ipa",
+          "size": 13497416,
+          "minOSVersion": "14.0",
+          "sha256": "37e5c5eca20de767b97f17cbc0faf223adb85b011127b351d3f7b30a03e76736"
+        },
+        {
+          "version": "2.26.3",
+          "buildVersion": "154",
+          "date": "2026-06-22",
+          "localizedDescription": "## Changes in this release\n# release: 2.26.3\n\n## ✨新增功能\n- 新增 Cookie Cloud 配置一键清空功能，清理账号同步配置更方便。\n\n## 🐛修复问题\n- 修复种子下载时下载方式不会被记住的问题，重复下载操作更顺手。\n- 优化列表骨架屏占位的明暗对比，加载中的界面可读性更好。\n\n\n## 📱 Android APK Downloads\n\n- **ARM64 APK** (arm64-v8a): For modern 64-bit devices\n\n## 💻 Desktop Downloads\n\n- **Windows x64**: Windows installer for 64-bit systems\n- **Linux x64**: Linux AppImage for 64-bit systems (portable, no installation required)\n- **macOS x64**: macOS DMG image for 64-bit systems\n- **macOS x64 (app)**: Zipped .app file for manual installation or use on systems where DMG is not preferred\n\n## 🍎 iOS Downloads\n\n- **Unsigned IPA**: For sideloading with tools like AltStore, Sideloadly, etc.\n- **Xcode Archive**: For developers to re-sign and distribute\n",
+          "downloadURL": "https://github.com/JustLookAtNow/pt_mate/releases/download/v2.26.3/pt_mate-2.26.3-unsigned.ipa",
+          "size": 13653423,
+          "minOSVersion": "14.0",
+          "sha256": "a1a5f3d58f586a8f9aca54b352e4f1b88e58d966817d00fae7b275f67c9fb9ac"
         }
       ]
     }
