@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "name": "sidestore-source",
+    "identifier": "com.lesir.sidestore-source",
+    "sourceURL": "https://raw.githubusercontent.com/lesir831/sidestore-source/main/apps.json",
+    "subtitle": "由 GitHub Releases 自动维护的 SideStore 应用源",
+    "description": "收录开源 iOS 应用，并由 GitHub Actions 自动同步各项目发布的 IPA。",
+    "website": "https://github.com/lesir831/sidestore-source",
+    "featuredApps": [
+      "com.xycz.simple-live",
+      "com.gucooing.piliplus"
+    ],
+    "apps": [],
+    "news": []
+  },
+  "defaults": {
+    "maxVersions": 5,
+    "includePrereleases": false
+  },
+  "apps": [
+    {
+      "github": {
+        "repository": "June6699/dart_simple_live",
+        "assetPattern": "^ios_no_sign\\.ipa$"
+      },
+      "metadata": {
+        "name": "Simple Live",
+        "bundleIdentifier": "com.xycz.simple-live",
+        "developerName": "June6699",
+        "subtitle": "简简单单的看直播",
+        "localizedDescription": "Simple Live 是一个开源、免费的直播聚合观看应用，支持哔哩哔哩、斗鱼、虎牙、抖音、快手等平台的直播观看，无需登录。\n\n主要功能：\n• 多平台直播聚合观看\n• 弹幕与聊天互动\n• 直播多开\n• 直播录制下载\n• 观看历史与关注列表\n• 礼物提醒\n• 定时关闭\n\n注意：此为未签名 IPA（ios_no_sign.ipa），需要自行签名或通过 SideStore、AltStore 等工具侧载安装。",
+        "iconURL": "https://raw.githubusercontent.com/June6699/dart_simple_live/master/simple_live_app/ios/Runner/Assets.xcassets/AppIcon.appiconset/icon-1024.png",
+        "tintColor": "ff3b30",
+        "category": "entertainment",
+        "appPermissions": {
+          "privacy": {
+            "NSLocalNetworkUsageDescription": "用于在同一局域网内发现并连接其他 Simple Live 设备进行数据同步",
+            "NSPhotoLibraryUsageDescription": "保存图片至相册",
+            "NSPhotoLibraryAddUsageDescription": "保存直播截图至相册",
+            "NSCameraUsageDescription": "用于扫描二维码"
+          }
+        }
+      }
+    },
+    {
+      "github": {
+        "repository": "cnctem/PiliPlusX",
+        "assetPattern": "^PiliPlusX_ios_.*\\.ipa$",
+        "marketingVersionFromTag": true
+      },
+      "metadata": {
+        "name": "PiliPlusX",
+        "bundleIdentifier": "com.gucooing.piliplus",
+        "developerName": "cnctem",
+        "subtitle": "第三方哔哩哔哩客户端",
+        "localizedDescription": "PiliPlusX 是使用 Flutter 开发的第三方哔哩哔哩客户端，支持视频、番剧、直播、动态、离线缓存、画中画、弹幕及多账号等功能。\n\n本源直接跟进 cnctem/PiliPlusX 的稳定版 iOS IPA；预发布测试版默认不会加入。",
+        "iconURL": "https://raw.githubusercontent.com/cnctem/PiliPlusX/v1.1.3.1/ios/Runner/Assets.xcassets/AppIcon.appiconset/icon_1024.png",
+        "tintColor": "fb7299",
+        "category": "entertainment",
+        "appPermissions": {
+          "privacy": {
+            "NSAppleMusicUsageDescription": "App需要您的同意,才能访问媒体资料库",
+            "NSCameraUsageDescription": "App需要您的同意,才能访问相册",
+            "NSLocalNetworkUsageDescription": "需要访问本地网络以发现和连接 DLNA 投屏设备",
+            "NSPhotoLibraryUsageDescription": "请允许APP保存图片到相册"
+          }
+        }
+      }
+    }
+  ]
+}
