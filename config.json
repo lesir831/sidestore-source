@@ -10,6 +10,7 @@
     "featuredApps": [
       "com.xycz.simple-live",
       "com.gucooing.piliplus",
+      "com.example.piliplus",
       "com.example.flutterApplicationMTeam"
     ],
     "apps": [],
@@ -55,8 +56,33 @@
         "bundleIdentifier": "com.gucooing.piliplus",
         "developerName": "cnctem",
         "subtitle": "第三方哔哩哔哩客户端",
-        "localizedDescription": "PiliPlusX 是使用 Flutter 开发的第三方哔哩哔哩客户端，支持视频、番剧、直播、动态、离线缓存、画中画、弹幕及多账号等功能。\n\n本源直接跟进 cnctem/PiliPlusX 的稳定版 iOS IPA；预发布测试版默认不会加入。",
+        "localizedDescription": "PiliPlusX 是使用 Flutter 开发的第三方哔哩哔哩客户端，支持视频、番剧、直播、动态、离线缓存、画中画、弹幕及多账号等功能。\n\n本源直接跟进 cnctem/PiliPlusX 的稳定版 iOS IPA；预发布共存测试版使用不同 Bundle ID，不会混入稳定版更新历史。项目的 Release 标签与 IPA 内应用版本可能不同：源使用 IPA 真实版本完成安装校验，并使用 Release 标签作为展示版本。",
         "iconURL": "https://raw.githubusercontent.com/cnctem/PiliPlusX/v1.1.3.1/ios/Runner/Assets.xcassets/AppIcon.appiconset/icon_1024.png",
+        "tintColor": "fb7299",
+        "category": "entertainment",
+        "appPermissions": {
+          "privacy": {
+            "NSAppleMusicUsageDescription": "App需要您的同意,才能访问媒体资料库",
+            "NSCameraUsageDescription": "App需要您的同意,才能访问相册",
+            "NSLocalNetworkUsageDescription": "需要访问本地网络以发现和连接 DLNA 投屏设备",
+            "NSPhotoLibraryUsageDescription": "请允许APP保存图片到相册"
+          }
+        }
+      }
+    },
+    {
+      "github": {
+        "repository": "bggRGjQaUbCoE/PiliPlus",
+        "assetPattern": "^PiliPlus_ios_.*\\.ipa$",
+        "marketingVersionFromTag": true
+      },
+      "metadata": {
+        "name": "PiliPlus",
+        "bundleIdentifier": "com.example.piliplus",
+        "developerName": "bggRGjQaUbCoE",
+        "subtitle": "第三方哔哩哔哩客户端",
+        "localizedDescription": "PiliPlus 是使用 Flutter 开发的第三方哔哩哔哩客户端，支持视频、番剧、直播、动态、离线缓存、画中画、弹幕、多账号和桌面平台等功能。\n\n本源跟进 bggRGjQaUbCoE/PiliPlus 的稳定版 iOS IPA。Release 标签作为展示版本，安装校验使用 IPA 内的真实版本与构建号。",
+        "iconURL": "https://raw.githubusercontent.com/bggRGjQaUbCoE/PiliPlus/2.1.0/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024%401x.png",
         "tintColor": "fb7299",
         "category": "entertainment",
         "appPermissions": {

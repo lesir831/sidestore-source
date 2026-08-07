@@ -4,6 +4,7 @@
 
 - [Simple Live](https://github.com/June6699/dart_simple_live)
 - [PiliPlusX](https://github.com/cnctem/PiliPlusX)
+- [PiliPlus](https://github.com/bggRGjQaUbCoE/PiliPlus)
 - [PT Mate](https://github.com/JustLookAtNow/pt_mate)
 
 ## Source URL
@@ -45,6 +46,8 @@ https://raw.githubusercontent.com/lesir831/sidestore-source/main/apps.json
 - `maxVersions`：该应用保留的版本数；不填时使用全局默认值 5。
 - `marketingVersionFromTag`：将 Release 标签作为展示版本；真实的 `version` 和 `buildVersion` 始终从 IPA 读取。
 - `bundleIdentifier`：必须与 IPA 内的 `CFBundleIdentifier` 一致，否则生成会失败。
+
+例如 PiliPlusX `v1.1.3.1` 的 IPA 实际版本是 `2.0.6 (5182)`：源中的 `version` / `buildVersion` 必须保持 `2.0.6` / `5182`，并通过 `marketingVersion: 1.1.3.1` 展示项目发布版本。预发布共存包如果使用不同 Bundle ID，必须作为另一应用处理，不能混入稳定版版本列表。
 
 首次遇到新的 IPA 时，生成器会下载并读取其 `Info.plist`，得到真实 Bundle ID、版本、构建号和最低 iOS 版本，同时计算 SHA-256。已有版本直接复用 `apps.json` 中的元数据，因此定时任务通常只下载新版本。
 
