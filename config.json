@@ -9,6 +9,7 @@
     "website": "https://github.com/lesir831/sidestore-source",
     "featuredApps": [
       "com.xycz.simple-live",
+      "com.example.kazumi",
       "com.gucooing.piliplus",
       "com.example.piliplus",
       "com.example.flutterApplicationMTeam"
@@ -41,6 +42,29 @@
             "NSPhotoLibraryUsageDescription": "保存图片至相册",
             "NSPhotoLibraryAddUsageDescription": "保存直播截图至相册",
             "NSCameraUsageDescription": "用于扫描二维码"
+          }
+        }
+      }
+    },
+    {
+      "github": {
+        "repository": "Predidit/Kazumi",
+        "assetPattern": "^Kazumi_ios_.*_no_sign\\.ipa$",
+        "marketingVersionFromTag": true
+      },
+      "metadata": {
+        "name": "Kazumi",
+        "bundleIdentifier": "com.example.kazumi",
+        "developerName": "Predidit",
+        "subtitle": "自定义规则的番剧采集与在线观看应用",
+        "localizedDescription": "Kazumi 是使用 Flutter 开发、基于自定义 XPath 规则的番剧采集与在线观看应用，支持规则导入与分享、番剧目录与搜索、时间表、弹幕、下载、DLNA 投屏、外部播放器、Anime4K 实时超分辨率及跨设备同步。\n\n本源跟进 Predidit/Kazumi 的稳定版未签名 iOS IPA，需要通过 SideStore、AltStore 等工具自行签名后安装。版本、构建号和最低 iOS 版本均从 IPA 的真实 Info.plist 读取。",
+        "iconURL": "https://raw.githubusercontent.com/Predidit/Kazumi/2.2.8/assets/images/logo/logo_rounded.png",
+        "tintColor": "9ccc65",
+        "category": "entertainment",
+        "appPermissions": {
+          "entitlements": [],
+          "privacy": {
+            "NSPhotoLibraryAddUsageDescription": ""
           }
         }
       }

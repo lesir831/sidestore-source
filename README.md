@@ -3,6 +3,7 @@
 由 GitHub Releases 自动维护的 SideStore / AltStore 应用源。目前收录：
 
 - [Simple Live](https://github.com/June6699/dart_simple_live)
+- [Kazumi](https://github.com/Predidit/Kazumi)
 - [PiliPlusX](https://github.com/cnctem/PiliPlusX)
 - [PiliPlus](https://github.com/bggRGjQaUbCoE/PiliPlus)
 - [PT Mate](https://github.com/JustLookAtNow/pt_mate)
