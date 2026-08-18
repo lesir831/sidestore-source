@@ -301,6 +301,16 @@
       },
       "versions": [
         {
+          "version": "2.28.1",
+          "buildVersion": "187",
+          "date": "2026-08-18",
+          "localizedDescription": "## Changes in this release\n# release: 2.28.1\n\n## 🎉Highlights\n- 封面查看器全新升级：支持左右翻页浏览，并与列表滚动智能联动，浏览体验更流畅\n\n## ✨新增功能\n- 收藏和下载操作新增超时自动重试，弱网环境下更稳定\n- 封面查看器支持左右翻页并联动滚动列表\n\n## 🐛修复问题\n- 优惠标签支持分钟级倒计时，时间展示更精准\n- 修复分类名称过长时的显示问题，最多显示两行\n- 扩大封面加载失败后的重试点击区域，操作更易触发\n\n\n## Secure-storage rollout\n\n- Phase: `phase1`\n- `ENABLE_SECURE_STORAGE_TRANSACTIONS`: `false`\n- Android versionCode: `187`\n- Source commit: `b2972c751a734764bb55a6ce7d38fc3149858c75`\n\n## 📱 Android APK Downloads\n\n- **ARM64 APK** (arm64-v8a): For modern 64-bit devices\n\n## 💻 Desktop Downloads\n\n- **Windows x64**: Windows installer for 64-bit systems\n- **Linux x64**: Linux AppImage for 64-bit systems (portable, no installation required)\n- **macOS x64**: macOS DMG image for 64-bit systems\n- **macOS x64 (app)**: Zipped .app file for manual installation or use on systems where DMG is not preferred\n\n## 🍎 iOS Downloads\n\n- **Unsigned IPA**: For sideloading with tools like AltStore, Sideloadly, etc.\n- **Xcode Archive**: For developers to re-sign and distribute\n",
+          "downloadURL": "https://github.com/JustLookAtNow/pt_mate/releases/download/v2.28.1/pt_mate-2.28.1-unsigned.ipa",
+          "size": 13772453,
+          "minOSVersion": "14.0",
+          "sha256": "220628e3102cdc060f057b24d92708a8511f681d040cb3a6689a90b3afc7c74b"
+        },
+        {
           "version": "2.28.0",
           "buildVersion": "186",
           "date": "2026-08-07",
@@ -339,16 +349,6 @@
           "size": 13497416,
           "minOSVersion": "14.0",
           "sha256": "37e5c5eca20de767b97f17cbc0faf223adb85b011127b351d3f7b30a03e76736"
-        },
-        {
-          "version": "2.26.3",
-          "buildVersion": "154",
-          "date": "2026-06-22",
-          "localizedDescription": "## Changes in this release\n# release: 2.26.3\n\n## ✨新增功能\n- 新增 Cookie Cloud 配置一键清空功能，清理账号同步配置更方便。\n\n## 🐛修复问题\n- 修复种子下载时下载方式不会被记住的问题，重复下载操作更顺手。\n- 优化列表骨架屏占位的明暗对比，加载中的界面可读性更好。\n\n\n## 📱 Android APK Downloads\n\n- **ARM64 APK** (arm64-v8a): For modern 64-bit devices\n\n## 💻 Desktop Downloads\n\n- **Windows x64**: Windows installer for 64-bit systems\n- **Linux x64**: Linux AppImage for 64-bit systems (portable, no installation required)\n- **macOS x64**: macOS DMG image for 64-bit systems\n- **macOS x64 (app)**: Zipped .app file for manual installation or use on systems where DMG is not preferred\n\n## 🍎 iOS Downloads\n\n- **Unsigned IPA**: For sideloading with tools like AltStore, Sideloadly, etc.\n- **Xcode Archive**: For developers to re-sign and distribute\n",
-          "downloadURL": "https://github.com/JustLookAtNow/pt_mate/releases/download/v2.26.3/pt_mate-2.26.3-unsigned.ipa",
-          "size": 13653423,
-          "minOSVersion": "14.0",
-          "sha256": "a1a5f3d58f586a8f9aca54b352e4f1b88e58d966817d00fae7b275f67c9fb9ac"
         }
       ]
     }
