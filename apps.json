@@ -240,6 +240,17 @@
       },
       "versions": [
         {
+          "version": "2.1.2",
+          "buildVersion": "5241",
+          "date": "2026-08-24",
+          "localizedDescription": "支持设置蜂窝网络解码格式 #2571 by @ucxn\r\n合并字体设置 #2611 by @My-Responsitories\r\n增加楼中楼评论排序设置 #2655 by @Meteor-3\r\nmacOS Command+R 刷新推荐 #2537 by @xiejiaxue\r\nAndroid、Windows、Linux 支持从已安装字体中选择字体 #2611 by @My-Responsitories\r\n\r\n修复部分安卓无法播放 #2631 #2642\r\n修复账号退出逻辑 #2666 by @KIDA-MNESIA\r\n修复导入设置 WebDav 配置未更新 #2667 by @KIDA-MNESIA",
+          "downloadURL": "https://github.com/bggRGjQaUbCoE/PiliPlus/releases/download/2.1.2/PiliPlus_ios_2.1.2%2B5241.ipa",
+          "size": 23940004,
+          "minOSVersion": "15.0",
+          "sha256": "82a5bdf825d36143b84c217684f17af9e6b4cf27f297548e5bb0544658e0e8d8",
+          "marketingVersion": "2.1.2"
+        },
+        {
           "version": "2.1.1",
           "buildVersion": "5231",
           "date": "2026-08-22",
@@ -282,17 +293,6 @@
           "minOSVersion": "14.0",
           "sha256": "c6ef7e1ebe45351a6a2fafa26180583e53b0e1d9a1c10b8f3663ca83df4363a4",
           "marketingVersion": "2.1.0"
-        },
-        {
-          "version": "2.0.9",
-          "buildVersion": "5051",
-          "date": "2026-06-13",
-          "localizedDescription": "修复 bug\r\n其他调整 #2404 by @My-Responsitories",
-          "downloadURL": "https://github.com/bggRGjQaUbCoE/PiliPlus/releases/download/2.0.9.2/PiliPlus_ios_2.0.9%2B5051.ipa",
-          "size": 23393835,
-          "minOSVersion": "14.0",
-          "sha256": "e2859de0a074450be6eceadd77c1cca1bf24bf545ca45692ef24cab219a71a59",
-          "marketingVersion": "2.0.9.2"
         }
       ]
     },
