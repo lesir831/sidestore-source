@@ -241,6 +241,17 @@
       "versions": [
         {
           "version": "2.1.2",
+          "buildVersion": "5277",
+          "date": "2026-08-29",
+          "localizedDescription": "回退 #2446\r\n显示视频分 P 序号 #2717\r\n弹幕应用 APP 字体 #2712\r\n支持导入字体 co-by @My-Responsitories\r\n其他调整 #2734 #2767 by @My-Responsitories\r\n\r\n修复 #2716 #2731\r\n修复部分安卓设备无法显示登录验证码 #2642 #2713 by @My-Responsitories",
+          "downloadURL": "https://github.com/bggRGjQaUbCoE/PiliPlus/releases/download/2.1.2.2/PiliPlus_ios_2.1.2%2B5277.ipa",
+          "size": 23936202,
+          "minOSVersion": "15.0",
+          "sha256": "9fe81715254d5e09af78ef607aa1725ac979df89631980f6930999bb66c48248",
+          "marketingVersion": "2.1.2.2"
+        },
+        {
+          "version": "2.1.2",
           "buildVersion": "5255",
           "date": "2026-08-26",
           "localizedDescription": "支持加载 `bcc` 格式字幕 #2705\r\n播放器启用自动重连 #2446 by @AlinJiang\r\n安卓支持允许三方 APP 访问私有存储，默认关\r\n支持复制设备信息 #2688 by @My-Responsitories\r\n调整部分设置选项界面 #2683 by @My-Responsitories\r\n\r\n修复 #2697 by @My-Responsitories\r\n修复 #2637 #2638 #2647 #2671 #2692",
@@ -282,17 +293,6 @@
           "minOSVersion": "15.0",
           "sha256": "01b2496bf14205e3adcd2de9242b520440c900fae48eaf1c0533411615046edf",
           "marketingVersion": "2.1.1.1"
-        },
-        {
-          "version": "2.1.1",
-          "buildVersion": "5225",
-          "date": "2026-08-22",
-          "localizedDescription": "支持显示 SC 发送时间\r\n私信消息支持标为已读\r\n过滤无播放权限的推荐视频\r\n取消滑动刷新时不隐藏 FAB\r\n动态文字支持复制表情包内容\r\n刷新滑动距离调整为根据刷新指示器高度计算\r\n恢复历史记录视频播放记录 #2458 by @Zxis233\r\n直播卡片支持反馈 #2456 by @My-Responsitories\r\nLinux 平台关闭 Impeller #2569 by @Axiaobo7788\r\n增加弹幕不透明度/字体大小设置区间 #2452 by @Meteor-3\r\n文字选择工具栏部分支持站内搜索 #2474 by @My-Responsitories\r\n支持播放多片段类型视频，优化仅播音频 #2455 by @My-Responsitories\r\n其他调整 #2612 by @My-Responsitories\r\n\r\n界面优化\r\n优化统一 iOS 列表滑动效果 #2184\r\n优化评论/动态检查结果界面 #2501\r\n图片缓存优化 #2473 by @My-Responsitories\r\n\r\n修复桌面端富文本菜单点击无效\r\n修复 #2182 #2485 #2491 #2494 #2581\r\n修复应用内 WebView #2454 by @Starfallan\r\n修复 iPadOS 窗口模式控制按钮 #2482 by @ngbyspy\r\n修复 Start History 链接 #2557 by @Dessalines39394\r\n修复 macOS 标题栏 #2448 by @Lynricsy, #2534 by @xiejiaxue\r\n修复 bug\r\n\r\n其他调整\r\n",
-          "downloadURL": "https://github.com/bggRGjQaUbCoE/PiliPlus/releases/download/2.1.1/PiliPlus_ios_2.1.1%2B5225.ipa",
-          "size": 23884938,
-          "minOSVersion": "15.0",
-          "sha256": "892f122c8e110b823ca2e49795be51c42bf18443558e532cfd94dd22dbd5f667",
-          "marketingVersion": "2.1.1"
         }
       ]
     },
