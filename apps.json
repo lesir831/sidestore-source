@@ -241,6 +241,17 @@
       "versions": [
         {
           "version": "2.1.2",
+          "buildVersion": "5281",
+          "date": "2026-08-30",
+          "localizedDescription": "修复 bug",
+          "downloadURL": "https://github.com/bggRGjQaUbCoE/PiliPlus/releases/download/2.1.2.3/PiliPlus_ios_2.1.2%2B5281.ipa",
+          "size": 23936722,
+          "minOSVersion": "15.0",
+          "sha256": "0f76157d0cec4865262a3d1a30ddcf94d79f70f6b5df140513a844e649aa6f17",
+          "marketingVersion": "2.1.2.3"
+        },
+        {
+          "version": "2.1.2",
           "buildVersion": "5277",
           "date": "2026-08-29",
           "localizedDescription": "回退 #2446\r\n显示视频分 P 序号 #2717\r\n弹幕应用 APP 字体 #2712\r\n支持导入字体 co-by @My-Responsitories\r\n其他调整 #2734 #2767 by @My-Responsitories\r\n\r\n修复 #2716 #2731\r\n修复部分安卓设备无法显示登录验证码 #2642 #2713 by @My-Responsitories",
@@ -282,17 +293,6 @@
           "minOSVersion": "15.0",
           "sha256": "ed16456afb81fcea47f47b098940f8e9dc6fb85d697385dddd90ba0d81f28224",
           "marketingVersion": "2.1.1.2"
-        },
-        {
-          "version": "2.1.1",
-          "buildVersion": "5230",
-          "date": "2026-08-22",
-          "localizedDescription": "自定义定时关闭时长改为滑动选择 #2632\r\n\r\n修复 #2631 #2636\r\n修复 #1967 #2634 by @My-Responsitories\r\n修复复制 VideoTrack 信息 #2633 by @My-Responsitories",
-          "downloadURL": "https://github.com/bggRGjQaUbCoE/PiliPlus/releases/download/2.1.1.1/PiliPlus_ios_2.1.1%2B5230.ipa",
-          "size": 23909162,
-          "minOSVersion": "15.0",
-          "sha256": "01b2496bf14205e3adcd2de9242b520440c900fae48eaf1c0533411615046edf",
-          "marketingVersion": "2.1.1.1"
         }
       ]
     },
