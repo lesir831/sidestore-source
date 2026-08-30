@@ -28,6 +28,7 @@ REQUIRED_CACHE_KEYS = {
     "minOSVersion",
     "sha256",
 }
+REQUIRED_FALLBACK_KEYS = REQUIRED_CACHE_KEYS | {"date", "localizedDescription"}
 
 
 class SourceError(RuntimeError):
@@ -102,6 +103,32 @@ def existing_version_cache(source: dict[str, Any]) -> dict[str, dict[str, Any]]:
                     "_bundleIdentifier": app.get("bundleIdentifier"),
                 }
     return cache
+
+
+def existing_versions_by_bundle_id(source: dict[str, Any]) -> dict[str, list[dict[str, Any]]]:
+    """Return complete, previously verified version lists for outage fallback."""
+    versions_by_bundle_id: dict[str, list[dict[str, Any]]] = {}
+    for app in source.get("apps", []):
+        if not isinstance(app, dict):
+            continue
+        bundle_id = app.get("bundleIdentifier")
+        versions = app.get("versions")
+        if not isinstance(bundle_id, str) or not isinstance(versions, list) or not versions:
+            continue
+        if not all(
+            isinstance(version, dict)
+            and REQUIRED_FALLBACK_KEYS <= version.keys()
+            and all(version.get(key) not in (None, "") for key in REQUIRED_CACHE_KEYS | {"date"})
+            for version in versions
+        ):
+            continue
+        versions_by_bundle_id[bundle_id] = [dict(version) for version in versions]
+    return versions_by_bundle_id
+
+
+def warn(message: str) -> None:
+    prefix = "::warning::" if os.environ.get("GITHUB_ACTIONS") == "true" else "warning: "
+    print(f"{prefix}{message}", file=sys.stderr)
 
 
 def normalize_tag(tag: str) -> str:
@@ -264,6 +291,7 @@ def build_source(
     if not isinstance(default_limit, int) or default_limit < 1:
         raise SourceError("defaults.maxVersions must be a positive integer")
     cache = existing_version_cache(existing)
+    fallback_versions = existing_versions_by_bundle_id(existing)
     output = dict(config["source"])
     output_apps: list[dict[str, Any]] = []
     download_count = 0
@@ -281,11 +309,34 @@ def build_source(
         if not isinstance(include_prereleases, bool):
             raise SourceError(f"includePrereleases for {repository} must be a boolean")
 
-        releases = choose_releases(
-            client.releases(repository), github["assetPattern"], include_prereleases, limit
-        )
+        release_error: SourceError | None = None
+        try:
+            available_releases = client.releases(repository)
+        except SourceError as error:
+            release_error = error
+            releases = []
+        else:
+            releases = choose_releases(
+                available_releases, github["assetPattern"], include_prereleases, limit
+            )
         if not releases:
-            raise SourceError(f"No matching IPA releases found for {repository}")
+            versions = fallback_versions.get(metadata["bundleIdentifier"])
+            if versions is None:
+                if release_error is not None:
+                    raise release_error
+                raise SourceError(f"No matching IPA releases found for {repository}")
+
+            versions = versions[:limit]
+            app = dict(metadata)
+            app["versions"] = versions
+            output_apps.append(app)
+            reason = (
+                str(release_error)
+                if release_error is not None
+                else f"No matching IPA releases found for {repository}"
+            )
+            warn(f"{reason}; keeping {len(versions)} cached version(s)")
+            continue
 
         app = dict(metadata)
         versions: list[dict[str, Any]] = []

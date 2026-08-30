@@ -52,6 +52,8 @@ https://raw.githubusercontent.com/lesir831/sidestore-source/main/apps.json
 
 首次遇到新的 IPA 时，生成器会下载并读取其 `Info.plist`，得到真实 Bundle ID、版本、构建号和最低 iOS 版本，同时计算 SHA-256。已有版本直接复用 `apps.json` 中的元数据，因此定时任务通常只下载新版本。
 
+如果 GitHub Releases API 或上游资源短暂不可用，生成器会保留 `apps.json` 中已经验证过的版本，并在 Actions 中给出警告；新配置且尚无缓存的应用仍会失败，避免生成空应用条目。
+
 ## 本地更新
 
 ```sh

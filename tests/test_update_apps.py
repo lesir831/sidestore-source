@@ -87,6 +87,11 @@ class FakeClient:
         return io.BytesIO(self.payload), hashlib.sha256(self.payload).hexdigest()
 
 
+class FailingReleaseClient(FakeClient):
+    def releases(self, repository):
+        raise update_apps.SourceError("GitHub Releases API is temporarily unavailable")
+
+
 class SourceGeneratorTests(unittest.TestCase):
     def test_reads_versions_from_ipa_and_uses_tag_only_for_marketing(self):
         payload = make_ipa()
@@ -134,6 +139,39 @@ class SourceGeneratorTests(unittest.TestCase):
         self.assertEqual(client.downloads, [])
         self.assertEqual(version["localizedDescription"], "Release notes")
         self.assertEqual(version["date"], "2026-08-08")
+
+    def test_keeps_verified_versions_when_release_assets_temporarily_disappear(self):
+        payload = make_ipa()
+        client = FakeClient(payload)
+        existing, _ = update_apps.build_source(make_config(), {}, client)
+        client.release["assets"] = []
+        client.downloads.clear()
+
+        source, download_count = update_apps.build_source(make_config(), existing, client)
+
+        self.assertEqual(download_count, 0)
+        self.assertEqual(client.downloads, [])
+        self.assertEqual(source["apps"][0]["versions"], existing["apps"][0]["versions"])
+
+    def test_keeps_verified_versions_when_release_request_fails(self):
+        payload = make_ipa()
+        existing, _ = update_apps.build_source(make_config(), {}, FakeClient(payload))
+        client = FailingReleaseClient(payload)
+
+        source, download_count = update_apps.build_source(make_config(), existing, client)
+
+        self.assertEqual(download_count, 0)
+        self.assertEqual(client.downloads, [])
+        self.assertEqual(source["apps"][0]["versions"], existing["apps"][0]["versions"])
+
+    def test_does_not_hide_ambiguous_release_assets_with_cached_versions(self):
+        payload = make_ipa()
+        client = FakeClient(payload)
+        existing, _ = update_apps.build_source(make_config(), {}, client)
+        client.release["assets"].append(dict(client.release["assets"][0]))
+
+        with self.assertRaisesRegex(update_apps.SourceError, "matched multiple IPA assets"):
+            update_apps.build_source(make_config(), existing, client)
 
     def test_rejects_an_unexpected_bundle_identifier(self):
         payload = make_ipa(bundle_identifier="com.example.actual")
