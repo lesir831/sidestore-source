@@ -14,6 +14,7 @@ import tempfile
 import urllib.error
 import urllib.request
 import zipfile
+from datetime import date
 from pathlib import Path
 from typing import Any, BinaryIO
 
@@ -190,23 +191,67 @@ def validate_config(config: dict[str, Any]) -> None:
             re.compile(pattern)
         except re.error as error:
             raise SourceError(f"Invalid assetPattern for {repository}: {error}") from error
+        release_tag_pattern = github.get("releaseTagPattern")
+        if release_tag_pattern is not None:
+            if not isinstance(release_tag_pattern, str) or not release_tag_pattern:
+                raise SourceError(f"releaseTagPattern for {repository} must be a non-empty string")
+            try:
+                re.compile(release_tag_pattern)
+            except re.error as error:
+                raise SourceError(
+                    f"Invalid releaseTagPattern for {repository}: {error}"
+                ) from error
+        published_on_or_after = github.get("publishedOnOrAfter")
+        if published_on_or_after is not None:
+            if not isinstance(published_on_or_after, str):
+                raise SourceError(f"publishedOnOrAfter for {repository} must be YYYY-MM-DD")
+            try:
+                date.fromisoformat(published_on_or_after)
+            except ValueError as error:
+                raise SourceError(
+                    f"publishedOnOrAfter for {repository} must be YYYY-MM-DD"
+                ) from error
         if bundle_id in bundle_ids:
             raise SourceError(f"Duplicate bundle identifier: {bundle_id}")
         bundle_ids.add(bundle_id)
 
 
 def choose_releases(
-    releases: list[dict[str, Any]], asset_pattern: str, include_prereleases: bool, limit: int
+    releases: list[dict[str, Any]],
+    asset_pattern: str,
+    include_prereleases: bool,
+    limit: int,
+    release_tag_pattern: str | None = None,
+    published_on_or_after: str | None = None,
 ) -> list[tuple[dict[str, Any], dict[str, Any]]]:
-    pattern = re.compile(asset_pattern)
+    asset_regex = re.compile(asset_pattern)
+    release_tag_regex = re.compile(release_tag_pattern) if release_tag_pattern else None
+    minimum_publication_date = (
+        date.fromisoformat(published_on_or_after) if published_on_or_after else None
+    )
     chosen: list[tuple[dict[str, Any], dict[str, Any]]] = []
     for release in releases:
         if release.get("draft") or (release.get("prerelease") and not include_prereleases):
             continue
+        tag = release.get("tag_name")
+        if release_tag_regex is not None and (
+            not isinstance(tag, str) or release_tag_regex.fullmatch(tag) is None
+        ):
+            continue
+        if minimum_publication_date is not None:
+            published_at = release.get("published_at") or release.get("created_at")
+            if not isinstance(published_at, str) or len(published_at) < 10:
+                continue
+            try:
+                publication_date = date.fromisoformat(published_at[:10])
+            except ValueError:
+                continue
+            if publication_date < minimum_publication_date:
+                continue
         matches = [
             asset
             for asset in release.get("assets", [])
-            if isinstance(asset.get("name"), str) and pattern.fullmatch(asset["name"])
+            if isinstance(asset.get("name"), str) and asset_regex.fullmatch(asset["name"])
         ]
         if not matches:
             continue
@@ -295,6 +340,8 @@ def build_source(
     output = dict(config["source"])
     output_apps: list[dict[str, Any]] = []
     download_count = 0
+    release_snapshots: dict[str, list[dict[str, Any]]] = {}
+    release_failures: dict[str, SourceError] = {}
 
     for app_config in config["apps"]:
         github = app_config["github"]
@@ -309,15 +356,23 @@ def build_source(
         if not isinstance(include_prereleases, bool):
             raise SourceError(f"includePrereleases for {repository} must be a boolean")
 
-        release_error: SourceError | None = None
-        try:
-            available_releases = client.releases(repository)
-        except SourceError as error:
-            release_error = error
+        if repository not in release_snapshots and repository not in release_failures:
+            try:
+                release_snapshots[repository] = client.releases(repository)
+            except SourceError as error:
+                release_failures[repository] = error
+
+        release_error = release_failures.get(repository)
+        if release_error is not None:
             releases = []
         else:
             releases = choose_releases(
-                available_releases, github["assetPattern"], include_prereleases, limit
+                release_snapshots[repository],
+                github["assetPattern"],
+                include_prereleases,
+                limit,
+                github.get("releaseTagPattern"),
+                github.get("publishedOnOrAfter"),
             )
         if not releases:
             versions = fallback_versions.get(metadata["bundleIdentifier"])

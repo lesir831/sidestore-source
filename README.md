@@ -5,6 +5,7 @@
 - [Simple Live](https://github.com/June6699/dart_simple_live)
 - [Kazumi](https://github.com/Predidit/Kazumi)
 - [PiliPlusX](https://github.com/cnctem/PiliPlusX)
+- PiliPlusX Legacy（保留旧 Bundle ID 的兼容版本）
 - [PiliPlus](https://github.com/bggRGjQaUbCoE/PiliPlus)
 - [PT Mate](https://github.com/JustLookAtNow/pt_mate)
 
@@ -23,6 +24,8 @@ https://raw.githubusercontent.com/lesir831/sidestore-source/main/apps.json
   "github": {
     "repository": "owner/repository",
     "assetPattern": "^AppName_.*\\.ipa$",
+    "releaseTagPattern": "^v1\\..*$",
+    "publishedOnOrAfter": "2026-01-01",
     "includePrereleases": false,
     "maxVersions": 5,
     "marketingVersionFromTag": false
@@ -43,6 +46,8 @@ https://raw.githubusercontent.com/lesir831/sidestore-source/main/apps.json
 
 - `repository`：GitHub 的 `owner/repository`。
 - `assetPattern`：完整匹配 IPA 文件名的 Python 正则表达式。
+- `releaseTagPattern`：可选，完整匹配 Release 标签；适合上游更换 Bundle ID 后隔离不同的应用版本历史。
+- `publishedOnOrAfter`：可选，只收录该日期及之后发布的版本，格式为 `YYYY-MM-DD`。
 - `includePrereleases`：是否收录 GitHub 预发布版本，默认 `false`。
 - `maxVersions`：该应用保留的版本数；不填时使用全局默认值 5。
 - `marketingVersionFromTag`：将 Release 标签作为展示版本；真实的 `version` 和 `buildVersion` 始终从 IPA 读取。

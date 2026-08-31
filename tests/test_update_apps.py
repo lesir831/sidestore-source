@@ -1,3 +1,4 @@
+import copy
 import hashlib
 import io
 import plistlib
@@ -55,12 +56,14 @@ def make_config(bundle_identifier="com.example.app"):
     }
 
 
-def make_release(payload, *, tag="v1.2.3", body="Release notes"):
+def make_release(
+    payload, *, tag="v1.2.3", body="Release notes", published_at="2026-08-08T00:00:00Z"
+):
     return {
         "tag_name": tag,
         "draft": False,
         "prerelease": False,
-        "published_at": "2026-08-08T00:00:00Z",
+        "published_at": published_at,
         "body": body,
         "assets": [
             {
@@ -172,6 +175,86 @@ class SourceGeneratorTests(unittest.TestCase):
 
         with self.assertRaisesRegex(update_apps.SourceError, "matched multiple IPA assets"):
             update_apps.build_source(make_config(), existing, client)
+
+    def test_filters_releases_by_tag_pattern(self):
+        payload = make_ipa()
+        legacy = make_release(payload, tag="v1.1.3.1")
+        current = make_release(payload, tag="v1.1.5.0")
+
+        releases = update_apps.choose_releases(
+            [current, legacy], r"^Example.*\.ipa$", False, 5, r"^v1\.1\.[0-3](?:\..*)?$"
+        )
+
+        self.assertEqual([release["tag_name"] for release, _ in releases], ["v1.1.3.1"])
+
+    def test_filters_releases_by_minimum_publication_date(self):
+        payload = make_ipa()
+        current = make_release(payload, tag="v2.0.0", published_at="2026-07-09T00:00:00Z")
+        legacy = make_release(payload, tag="v1.0.0", published_at="2026-07-08T23:59:59Z")
+
+        releases = update_apps.choose_releases(
+            [current, legacy], r"^Example.*\.ipa$", False, 5, None, "2026-07-09"
+        )
+
+        self.assertEqual([release["tag_name"] for release, _ in releases], ["v2.0.0"])
+
+    def test_splits_bundle_id_lineages_from_one_release_snapshot(self):
+        current_payload = make_ipa(
+            bundle_identifier="com.example.current", version="2.0", build_version="200"
+        )
+        legacy_payload = make_ipa(
+            bundle_identifier="com.example.legacy", version="1.0", build_version="100"
+        )
+        current_release = make_release(current_payload, tag="v2.0.0")
+        legacy_release = make_release(legacy_payload, tag="v1.0.0")
+        current_url = "https://example.com/current.ipa"
+        legacy_url = "https://example.com/legacy.ipa"
+        current_release["assets"][0]["browser_download_url"] = current_url
+        legacy_release["assets"][0]["browser_download_url"] = legacy_url
+
+        class SplitClient:
+            def __init__(self):
+                self.release_requests = 0
+
+            def releases(self, repository):
+                self.release_requests += 1
+                return [current_release, legacy_release]
+
+            def download(self, url):
+                payload = {current_url: current_payload, legacy_url: legacy_payload}[url]
+                return io.BytesIO(payload), hashlib.sha256(payload).hexdigest()
+
+        config = make_config("com.example.current")
+        config["apps"][0]["github"]["releaseTagPattern"] = r"^v2\..*$"
+        legacy_config = copy.deepcopy(config["apps"][0])
+        legacy_config["github"]["releaseTagPattern"] = r"^v1\..*$"
+        legacy_config["metadata"]["name"] = "Example Legacy"
+        legacy_config["metadata"]["bundleIdentifier"] = "com.example.legacy"
+        config["apps"].append(legacy_config)
+        client = SplitClient()
+
+        source, download_count = update_apps.build_source(config, {}, client)
+
+        self.assertEqual(client.release_requests, 1)
+        self.assertEqual(download_count, 2)
+        self.assertEqual(
+            [app["bundleIdentifier"] for app in source["apps"]],
+            ["com.example.current", "com.example.legacy"],
+        )
+
+    def test_rejects_invalid_release_tag_pattern(self):
+        config = make_config()
+        config["apps"][0]["github"]["releaseTagPattern"] = "["
+
+        with self.assertRaisesRegex(update_apps.SourceError, "Invalid releaseTagPattern"):
+            update_apps.validate_config(config)
+
+    def test_rejects_invalid_minimum_publication_date(self):
+        config = make_config()
+        config["apps"][0]["github"]["publishedOnOrAfter"] = "2026-02-30"
+
+        with self.assertRaisesRegex(update_apps.SourceError, "publishedOnOrAfter"):
+            update_apps.validate_config(config)
 
     def test_rejects_an_unexpected_bundle_identifier(self):
         payload = make_ipa(bundle_identifier="com.example.actual")

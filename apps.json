@@ -8,7 +8,7 @@
   "featuredApps": [
     "com.xycz.simple-live",
     "com.example.kazumi",
-    "com.gucooing.piliplus",
+    "com.example.piliplusx",
     "com.example.piliplus",
     "com.example.flutterApplicationMTeam"
   ],
@@ -148,10 +148,85 @@
     },
     {
       "name": "PiliPlusX",
-      "bundleIdentifier": "com.gucooing.piliplus",
+      "bundleIdentifier": "com.example.piliplusx",
       "developerName": "cnctem",
       "subtitle": "第三方哔哩哔哩客户端",
-      "localizedDescription": "PiliPlusX 是使用 Flutter 开发的第三方哔哩哔哩客户端，支持视频、番剧、直播、动态、离线缓存、画中画、弹幕及多账号等功能。\n\n本源直接跟进 cnctem/PiliPlusX 的稳定版 iOS IPA；预发布共存测试版使用不同 Bundle ID，不会混入稳定版更新历史。项目的 Release 标签与 IPA 内应用版本可能不同：源使用 IPA 真实版本完成安装校验，并使用 Release 标签作为展示版本。",
+      "localizedDescription": "PiliPlusX 是使用 Flutter 开发的第三方哔哩哔哩客户端，支持视频、番剧、直播、动态、离线缓存、画中画、弹幕及多账号等功能。\n\n上游从 v1.1.4.4 起将 iOS Bundle ID 更改为 com.example.piliplusx，v1.1.5.0 正式版继续使用该新 ID。本条目跟进新 ID 的当前版本；它可与旧版共存，但无法覆盖安装或原地升级旧版，请先从旧版导出登录信息和设置，再导入当前版本。版本、构建号和最低 iOS 版本均从 IPA 的真实 Info.plist 读取。",
+      "iconURL": "https://raw.githubusercontent.com/cnctem/PiliPlusX/v1.1.5.0/ios/Runner/Assets.xcassets/AppIcon.appiconset/icon_1024.png",
+      "tintColor": "fb7299",
+      "category": "entertainment",
+      "appPermissions": {
+        "privacy": {
+          "NSAppleMusicUsageDescription": "App需要您的同意,才能访问媒体资料库",
+          "NSCameraUsageDescription": "App需要您的同意,才能访问相册",
+          "NSLocalNetworkUsageDescription": "需要访问本地网络以发现和连接 DLNA 投屏设备",
+          "NSPhotoLibraryUsageDescription": "请允许APP保存图片到相册"
+        }
+      },
+      "versions": [
+        {
+          "version": "2.1.2",
+          "buildVersion": "5317",
+          "date": "2026-08-30",
+          "localizedDescription": "久违的正式版，感谢智谱送的 3亿token\r\n\r\n总之志愿测试的朋友请加测试Q群 877316900，以便第一时间反馈问题、功能建议，以及讨论闲聊。入群口令 cnctem",
+          "downloadURL": "https://github.com/cnctem/PiliPlusX/releases/download/v1.1.5.0/PiliPlusX_ios_v1.1.5.0.ipa",
+          "size": 24069627,
+          "minOSVersion": "15.0",
+          "sha256": "f327b1a6ba379e463390db7c981e422c938a70a005dd99aec67b7618a6e42d3d",
+          "marketingVersion": "1.1.5.0"
+        },
+        {
+          "version": "2.1.2",
+          "buildVersion": "5316",
+          "date": "2026-08-30",
+          "localizedDescription": "自动检查更新改回当前仓库了，一些包名问题修了，追了上游的最新状态",
+          "downloadURL": "https://github.com/cnctem/PiliPlusX/releases/download/v1.1.4.9/PiliPlusX_ios_v1.1.4.9.ipa",
+          "size": 24069403,
+          "minOSVersion": "15.0",
+          "sha256": "e8a8cb3a7a0ade912140316372e544fcd1f033b66949b63aef5626baed1e0a22",
+          "marketingVersion": "1.1.4.9"
+        },
+        {
+          "version": "2.0.9",
+          "buildVersion": "5148",
+          "date": "2026-08-16",
+          "localizedDescription": "依旧是测试版\r\n- 追了上游的最新状态\r\n- 修了 pink 版本无法启动的问题",
+          "downloadURL": "https://github.com/cnctem/PiliPlusX/releases/download/v1.1.4.8/PiliPlusX_ios_v1.1.4.8.ipa",
+          "size": 23803379,
+          "minOSVersion": "14.0",
+          "sha256": "9220d9dae0ede3d61867da576988c5811c08ae67ec56189c2da37f6fa8967199",
+          "marketingVersion": "1.1.4.8"
+        },
+        {
+          "version": "2.0.9",
+          "buildVersion": "5145",
+          "date": "2026-07-10",
+          "localizedDescription": "这是一个测试版本，稳定版本请等 v1.2.0.0 正式版发布再下载\r\n\r\n本版本对基于上游最新提交，将 PiliPlusX 领先提交全部重构\r\n\r\n共存包名，不会覆盖原版本，请在设置-关于中导出/导入登录信息和设置到测试版本\r\n\r\n合入了 PR #40 ，安卓离线缓存能够更改，感谢 @alexma233 贡献\r\n\r\nPiliPlusX 鸿蒙版也在基于 [qinshah/PiliPlus](https://github.com/cnctem/PiliPlusX/blob/v1.1.4.4/github.com/qinshah/PiliPlus) 最新版本，重构了PiliPlusX 的领先提交（鸿蒙版不是共存包名）\r\n\r\n总之志愿测试的朋友请加测试Q群 877316900，以便第一时间反馈问题、功能建议，以及讨论闲聊。入群口令 cnctem",
+          "downloadURL": "https://github.com/cnctem/PiliPlusX/releases/download/v1.1.4.7/PiliPlusX_ios_v1.1.4.7.ipa",
+          "size": 23500977,
+          "minOSVersion": "14.0",
+          "sha256": "a21164279aad45e9d2ac75298d21c955e04ee0f38f88282fe40a7b7ab50180ef",
+          "marketingVersion": "1.1.4.7"
+        },
+        {
+          "version": "2.0.9",
+          "buildVersion": "5143",
+          "date": "2026-07-09",
+          "localizedDescription": "这是一个测试版本，稳定版本请等 v1.2.0.0 正式版发布再下载\r\n\r\n本版本对基于上游最新提交，将 PiliPlusX 领先提交全部重构\r\n\r\n共存包名，不会覆盖原版本，请在`设置-关于`中`导出/导入登录信息和设置`到测试版本\r\n\r\nPiliPlusX 鸿蒙版也在基于 [qinshah/PiliPlus](github.com/qinshah/PiliPlus) 最新版本，重构了PiliPlusX 的领先提交\r\n\r\n总之志愿测试的朋友请加测试Q群 877316900，以便第一时间反馈问题、功能建议，以及讨论闲聊。入群口令 cnctem\r\n\r\n安卓版有亿点 bug，紧急撤包",
+          "downloadURL": "https://github.com/cnctem/PiliPlusX/releases/download/v1.1.4.4/PiliPlusX_ios_v1.1.4.4.ipa",
+          "size": 23500715,
+          "minOSVersion": "14.0",
+          "sha256": "970b1138e08e7aa146bed1fa867cdbb966fec7afbfc2acff9a506a1a684119dd",
+          "marketingVersion": "1.1.4.4"
+        }
+      ]
+    },
+    {
+      "name": "PiliPlusX Legacy",
+      "bundleIdentifier": "com.gucooing.piliplus",
+      "developerName": "cnctem",
+      "subtitle": "旧 Bundle ID 的兼容版本",
+      "localizedDescription": "此条目保留 PiliPlusX v1.1.3.1 及更早版本使用的旧 Bundle ID（com.gucooing.piliplus），供已安装用户重装或回退。\n\n上游当前版本已经迁移到新的 Bundle ID，旧版无法原地升级到当前版，也不会再从本条目获得新版本。迁移前请在旧版中导出登录信息和设置，然后安装 PiliPlusX 当前版并导入。",
       "iconURL": "https://raw.githubusercontent.com/cnctem/PiliPlusX/v1.1.3.1/ios/Runner/Assets.xcassets/AppIcon.appiconset/icon_1024.png",
       "tintColor": "fb7299",
       "category": "entertainment",

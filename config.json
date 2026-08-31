@@ -10,7 +10,7 @@
     "featuredApps": [
       "com.xycz.simple-live",
       "com.example.kazumi",
-      "com.gucooing.piliplus",
+      "com.example.piliplusx",
       "com.example.piliplus",
       "com.example.flutterApplicationMTeam"
     ],
@@ -73,14 +73,41 @@
       "github": {
         "repository": "cnctem/PiliPlusX",
         "assetPattern": "^PiliPlusX_ios_.*\\.ipa$",
+        "publishedOnOrAfter": "2026-07-09",
         "marketingVersionFromTag": true
       },
       "metadata": {
         "name": "PiliPlusX",
-        "bundleIdentifier": "com.gucooing.piliplus",
+        "bundleIdentifier": "com.example.piliplusx",
         "developerName": "cnctem",
         "subtitle": "第三方哔哩哔哩客户端",
-        "localizedDescription": "PiliPlusX 是使用 Flutter 开发的第三方哔哩哔哩客户端，支持视频、番剧、直播、动态、离线缓存、画中画、弹幕及多账号等功能。\n\n本源直接跟进 cnctem/PiliPlusX 的稳定版 iOS IPA；预发布共存测试版使用不同 Bundle ID，不会混入稳定版更新历史。项目的 Release 标签与 IPA 内应用版本可能不同：源使用 IPA 真实版本完成安装校验，并使用 Release 标签作为展示版本。",
+        "localizedDescription": "PiliPlusX 是使用 Flutter 开发的第三方哔哩哔哩客户端，支持视频、番剧、直播、动态、离线缓存、画中画、弹幕及多账号等功能。\n\n上游从 v1.1.4.4 起将 iOS Bundle ID 更改为 com.example.piliplusx，v1.1.5.0 正式版继续使用该新 ID。本条目跟进新 ID 的当前版本；它可与旧版共存，但无法覆盖安装或原地升级旧版，请先从旧版导出登录信息和设置，再导入当前版本。版本、构建号和最低 iOS 版本均从 IPA 的真实 Info.plist 读取。",
+        "iconURL": "https://raw.githubusercontent.com/cnctem/PiliPlusX/v1.1.5.0/ios/Runner/Assets.xcassets/AppIcon.appiconset/icon_1024.png",
+        "tintColor": "fb7299",
+        "category": "entertainment",
+        "appPermissions": {
+          "privacy": {
+            "NSAppleMusicUsageDescription": "App需要您的同意,才能访问媒体资料库",
+            "NSCameraUsageDescription": "App需要您的同意,才能访问相册",
+            "NSLocalNetworkUsageDescription": "需要访问本地网络以发现和连接 DLNA 投屏设备",
+            "NSPhotoLibraryUsageDescription": "请允许APP保存图片到相册"
+          }
+        }
+      }
+    },
+    {
+      "github": {
+        "repository": "cnctem/PiliPlusX",
+        "assetPattern": "^PiliPlusX_ios_.*\\.ipa$",
+        "releaseTagPattern": "^v\\.?1\\.1\\.[0-3](?:\\..*)?$",
+        "marketingVersionFromTag": true
+      },
+      "metadata": {
+        "name": "PiliPlusX Legacy",
+        "bundleIdentifier": "com.gucooing.piliplus",
+        "developerName": "cnctem",
+        "subtitle": "旧 Bundle ID 的兼容版本",
+        "localizedDescription": "此条目保留 PiliPlusX v1.1.3.1 及更早版本使用的旧 Bundle ID（com.gucooing.piliplus），供已安装用户重装或回退。\n\n上游当前版本已经迁移到新的 Bundle ID，旧版无法原地升级到当前版，也不会再从本条目获得新版本。迁移前请在旧版中导出登录信息和设置，然后安装 PiliPlusX 当前版并导入。",
         "iconURL": "https://raw.githubusercontent.com/cnctem/PiliPlusX/v1.1.3.1/ios/Runner/Assets.xcassets/AppIcon.appiconset/icon_1024.png",
         "tintColor": "fb7299",
         "category": "entertainment",
