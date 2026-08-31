@@ -166,6 +166,17 @@
       "versions": [
         {
           "version": "2.1.2",
+          "buildVersion": "5332",
+          "date": "2026-08-31",
+          "localizedDescription": "- 修复了安卓版无法与 PiliPlus 共存的问题\r\n- 同步了上游的最新变更\r\n- 鸿蒙版 [v1.1.5.0](https://github.com/cnctem/PiliPlusX/releases/download/v1.1.5.0/PiliPlusX_ohos_v1.1.5.0-ohos_unsigned.hap)\r\n",
+          "downloadURL": "https://github.com/cnctem/PiliPlusX/releases/download/v1.1.5.1/PiliPlusX_ios_v1.1.5.1.ipa",
+          "size": 24049014,
+          "minOSVersion": "15.0",
+          "sha256": "361d7dcc5265570642059d8cff3d5c9707588500917005e174489af7eef802b8",
+          "marketingVersion": "1.1.5.1"
+        },
+        {
+          "version": "2.1.2",
           "buildVersion": "5317",
           "date": "2026-08-30",
           "localizedDescription": "久违的正式版，感谢智谱送的 3亿token\r\n\r\n总之志愿测试的朋友请加测试Q群 877316900，以便第一时间反馈问题、功能建议，以及讨论闲聊。入群口令 cnctem",
@@ -207,17 +218,6 @@
           "minOSVersion": "14.0",
           "sha256": "a21164279aad45e9d2ac75298d21c955e04ee0f38f88282fe40a7b7ab50180ef",
           "marketingVersion": "1.1.4.7"
-        },
-        {
-          "version": "2.0.9",
-          "buildVersion": "5143",
-          "date": "2026-07-09",
-          "localizedDescription": "这是一个测试版本，稳定版本请等 v1.2.0.0 正式版发布再下载\r\n\r\n本版本对基于上游最新提交，将 PiliPlusX 领先提交全部重构\r\n\r\n共存包名，不会覆盖原版本，请在`设置-关于`中`导出/导入登录信息和设置`到测试版本\r\n\r\nPiliPlusX 鸿蒙版也在基于 [qinshah/PiliPlus](github.com/qinshah/PiliPlus) 最新版本，重构了PiliPlusX 的领先提交\r\n\r\n总之志愿测试的朋友请加测试Q群 877316900，以便第一时间反馈问题、功能建议，以及讨论闲聊。入群口令 cnctem\r\n\r\n安卓版有亿点 bug，紧急撤包",
-          "downloadURL": "https://github.com/cnctem/PiliPlusX/releases/download/v1.1.4.4/PiliPlusX_ios_v1.1.4.4.ipa",
-          "size": 23500715,
-          "minOSVersion": "14.0",
-          "sha256": "970b1138e08e7aa146bed1fa867cdbb966fec7afbfc2acff9a506a1a684119dd",
-          "marketingVersion": "1.1.4.4"
         }
       ]
     },
