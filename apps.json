@@ -168,7 +168,7 @@
           "version": "2.1.2",
           "buildVersion": "5332",
           "date": "2026-08-31",
-          "localizedDescription": "- 修复了安卓版无法与 PiliPlus 共存的问题\r\n- 同步了上游的最新变更\r\n- 鸿蒙版 [v1.1.5.0](https://github.com/cnctem/PiliPlusX/releases/download/v1.1.5.0/PiliPlusX_ohos_v1.1.5.0-ohos_unsigned.hap)\r\n",
+          "localizedDescription": "- 同步了上游的最新变更\r\n- 修复了安卓版无法与 PiliPlus 共存的问题\r\n- 修复了更新链接错误的问题（鸿蒙版屏蔽检查更新功能）",
           "downloadURL": "https://github.com/cnctem/PiliPlusX/releases/download/v1.1.5.1/PiliPlusX_ios_v1.1.5.1.ipa",
           "size": 24049014,
           "minOSVersion": "15.0",
