@@ -386,6 +386,16 @@
       },
       "versions": [
         {
+          "version": "2.29.0",
+          "buildVersion": "188",
+          "date": "2026-09-11",
+          "localizedDescription": "## 升级前必读：请先导出备份\n\n本版本升级了 Android 安全存储，旧版安全存储可能无法直接兼容。请在升级安装前使用应用内导出功能备份数据；备份文件是包含 Cookie、API Key 和密码等凭据的明文 JSON，请妥善保管，并在恢复成功后立即删除。\n\n## Changes in this release\n# release: 2.29.0\n\n## 🎉Highlights\n- Android 安全存储全面加固：设备不支持 OAEP+GCM 时自动降级为应用私有目录明文存储，并在设置页明确提示风险，同时提供旧数据恢复与重置入口，解决部分设备凭据完全无法读写的问题。\n\n## ✨新增功能\n- 封面查看器在原始尺寸下支持垂直滑动翻页：向上滑切换下一张、向下滑切换上一张（放大/平移状态下仍为拖动图片）。\n\n## 🐛修复问题\n- 修复封面画廊分页加载更多数据后，右翻按钮不显示的问题。\n- 修复从封面画廊查看大图返回后，列表封面小图未刷新的问题。\n- 修复 Android 安全存储事务读取异常、旧版数据恢复校验不通过，导致已保存的 Cookie/API Key/密码无法读取的问题。\n- 完善安全存储失败诊断，恢复页面可显示具体失败阶段与原因，便于定位问题。\n\n\n## Secure-storage rollout\n\n- Phase: `phase1`\n- `ENABLE_SECURE_STORAGE_TRANSACTIONS`: `false`\n- Android versionCode: `188`\n- Source commit: `e9cd7fac343b0505d4deebc87b1c1f04881623b8`\n\n## 📱 Android APK Downloads\n\n- **ARM64 APK** (arm64-v8a): For modern 64-bit devices\n\n## 💻 Desktop Downloads\n\n- **Windows x64**: Windows installer for 64-bit systems\n- **Linux x64**: Linux AppImage for 64-bit systems (portable, no installation required)\n- **macOS x64**: macOS DMG image for 64-bit systems\n- **macOS x64 (app)**: Zipped .app file for manual installation or use on systems where DMG is not preferred\n\n## 🍎 iOS Downloads\n\n- **Unsigned IPA**: For sideloading with tools like AltStore, Sideloadly, etc.\n- **Xcode Archive**: For developers to re-sign and distribute\n",
+          "downloadURL": "https://github.com/JustLookAtNow/pt_mate/releases/download/v2.29.0/pt_mate-2.29.0-unsigned.ipa",
+          "size": 14013799,
+          "minOSVersion": "15.0",
+          "sha256": "15c712b1f6d40ed6079dd9b3312885c8b919ee3cececec646ba1ce99c13c1c86"
+        },
+        {
           "version": "2.28.1",
           "buildVersion": "187",
           "date": "2026-08-18",
@@ -424,16 +434,6 @@
           "size": 13497361,
           "minOSVersion": "14.0",
           "sha256": "88567ec6f0dc4453117ed24e3a2b2cc6f1cdc98b5ebda13e8f423f875496f81d"
-        },
-        {
-          "version": "2.26.6",
-          "buildVersion": "157",
-          "date": "2026-07-06",
-          "localizedDescription": "## Changes in this release\n# release: 2.26.6\n\n## 🎉Highlights\n- 适配海棠 PT 站点，并新增预设配置支持。\n\n## ✨新增功能\n- 新增“海棠PT”预设站点支持（基于 NexusPHPWeb 适配器类型，并提供专属 of infoFinder 与功能配置）。\n\n## 🐛修复问题\n- 修复了聚合站点徽章的布局问题。\n- 优化了聚合搜索关键词通知，避免出现重复或冗余的通知。\n- 优化了暗黑模式下 qBittorrent 下载速度指示器的对比度。\n\n## 📋其它\n- 更新了支持站点文档 `docs/SUPPORTED_SITES.md`。\n\n\n## 📱 Android APK Downloads\n\n- **ARM64 APK** (arm64-v8a): For modern 64-bit devices\n\n## 💻 Desktop Downloads\n\n- **Windows x64**: Windows installer for 64-bit systems\n- **Linux x64**: Linux AppImage for 64-bit systems (portable, no installation required)\n- **macOS x64**: macOS DMG image for 64-bit systems\n- **macOS x64 (app)**: Zipped .app file for manual installation or use on systems where DMG is not preferred\n\n## 🍎 iOS Downloads\n\n- **Unsigned IPA**: For sideloading with tools like AltStore, Sideloadly, etc.\n- **Xcode Archive**: For developers to re-sign and distribute\n",
-          "downloadURL": "https://github.com/JustLookAtNow/pt_mate/releases/download/v2.26.6/pt_mate-2.26.6-unsigned.ipa",
-          "size": 13497416,
-          "minOSVersion": "14.0",
-          "sha256": "37e5c5eca20de767b97f17cbc0faf223adb85b011127b351d3f7b30a03e76736"
         }
       ]
     }
