@@ -396,6 +396,16 @@
       },
       "versions": [
         {
+          "version": "2.29.2",
+          "buildVersion": "190",
+          "date": "2026-09-30",
+          "localizedDescription": "## 升级前必读：请先导出备份\n\n本版本升级了 Android 安全存储，旧版安全存储可能无法直接兼容。请在升级安装前使用应用内导出功能备份数据；备份文件是包含 Cookie、API Key 和密码等凭据的明文 JSON，请妥善保管，并在恢复成功后立即删除。\n\n## Changes in this release\n# release: 2.29.2\n\n## ✨新增功能\n- 新增“自动添加站点标签”开关，开启后为下载任务自动附加“站点/站点名称”标签，方便分类管理。\n\n## 🐛修复问题\n- 支持 Android 旧版安全数据迁移，通过备份恢复已有的 Cookie、API Key 和密码。\n- 修复首页切换站点或筛选条件后，旧请求覆盖当前结果的问题。\n- 修复 qBittorrent 分类菜单在小屏幕上显示不全的问题，支持滚动选择分类。\n\n## 📋其它\n- 将“尝鲜（接收 Beta 版本更新）”开关移至“关于”页面的应用更新区域。\n\n祝大家国庆快乐 🎆🎇\n\n\n## Secure-storage rollout\n\n- Phase: `phase1`\n- `ENABLE_SECURE_STORAGE_TRANSACTIONS`: `false`\n- Android versionCode: `190`\n- Source commit: `210497bdece02c72fa3887031abdf57da81f206c`\n\n## 📱 Android APK Downloads\n\n- **ARM64 APK** (arm64-v8a): For modern 64-bit devices\n\n## 💻 Desktop Downloads\n\n- **Windows x64**: Windows installer for 64-bit systems\n- **Linux x64**: Linux AppImage for 64-bit systems (portable, no installation required)\n- **macOS x64**: macOS DMG image for 64-bit systems\n- **macOS x64 (app)**: Zipped .app file for manual installation or use on systems where DMG is not preferred\n\n## 🍎 iOS Downloads\n\n- **Unsigned IPA**: For sideloading with tools like AltStore, Sideloadly, etc.\n- **Xcode Archive**: For developers to re-sign and distribute\n",
+          "downloadURL": "https://github.com/JustLookAtNow/pt_mate/releases/download/v2.29.2/pt_mate-2.29.2-unsigned.ipa",
+          "size": 14068353,
+          "minOSVersion": "15.0",
+          "sha256": "36d265fca96603bbd5fbfd31d8fc016b404eea0cabb57e39cba7ce24d66566dd"
+        },
+        {
           "version": "2.29.0",
           "buildVersion": "188",
           "date": "2026-09-11",
@@ -434,16 +444,6 @@
           "size": 13503094,
           "minOSVersion": "14.0",
           "sha256": "f1908c116a70ab9f50186519c9456d4801b2cf2d906b012aff18608e5a143749"
-        },
-        {
-          "version": "2.26.7",
-          "buildVersion": "158",
-          "date": "2026-07-06",
-          "localizedDescription": "## Changes in this release\n# release: 2.26.7\n\n## 🐛修复问题\n- 修复 Audiences 站点 passkey 匹配识别问题\n\n\n## 📱 Android APK Downloads\n\n- **ARM64 APK** (arm64-v8a): For modern 64-bit devices\n\n## 💻 Desktop Downloads\n\n- **Windows x64**: Windows installer for 64-bit systems\n- **Linux x64**: Linux AppImage for 64-bit systems (portable, no installation required)\n- **macOS x64**: macOS DMG image for 64-bit systems\n- **macOS x64 (app)**: Zipped .app file for manual installation or use on systems where DMG is not preferred\n\n## 🍎 iOS Downloads\n\n- **Unsigned IPA**: For sideloading with tools like AltStore, Sideloadly, etc.\n- **Xcode Archive**: For developers to re-sign and distribute\n",
-          "downloadURL": "https://github.com/JustLookAtNow/pt_mate/releases/download/v2.26.7/pt_mate-2.26.7-unsigned.ipa",
-          "size": 13497361,
-          "minOSVersion": "14.0",
-          "sha256": "88567ec6f0dc4453117ed24e3a2b2cc6f1cdc98b5ebda13e8f423f875496f81d"
         }
       ]
     }
