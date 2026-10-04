@@ -178,7 +178,7 @@
           "version": "2.1.5",
           "buildVersion": "5506",
           "date": "2026-09-30",
-          "localizedDescription": "对齐上游 2.1.5 ，修复弹窗 Bug\r\n\r\n鸿蒙版还没更新，老版本是 [v1.1.5.1](https://github.com/cnctem/PiliPlusX/releases/tag/v1.1.5.1)",
+          "localizedDescription": "对齐上游 2.1.5 ，修复弹窗 Bug",
           "downloadURL": "https://github.com/cnctem/PiliPlusX/releases/download/v1.1.6.3/PiliPlusX_ios_v1.1.6.3.ipa",
           "size": 24110440,
           "minOSVersion": "15.0",
