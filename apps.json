@@ -176,6 +176,17 @@
       "versions": [
         {
           "version": "2.1.5",
+          "buildVersion": "5542",
+          "date": "2026-10-04",
+          "localizedDescription": "对齐两个上游最新提交\r\n\r\npc上播放控件只在鼠标移动到上下边缘区域时显示 #47  （也许下个版本把它做成设置项？）\r\n\r\n对的是的鸿蒙版更新了 #49 ",
+          "downloadURL": "https://github.com/cnctem/PiliPlusX/releases/download/v1.1.6.4/PiliPlusX_ios_v1.1.6.4.ipa",
+          "size": 24165277,
+          "minOSVersion": "15.0",
+          "sha256": "3b0cb4f05eb0a5a0795c2c4c6d4b063f8de88902701fc7a6cb952ae1c4724c7b",
+          "marketingVersion": "1.1.6.4"
+        },
+        {
+          "version": "2.1.5",
           "buildVersion": "5506",
           "date": "2026-09-30",
           "localizedDescription": "对齐上游 2.1.5 ，修复弹窗 Bug",
@@ -217,17 +228,6 @@
           "minOSVersion": "15.0",
           "sha256": "f327b1a6ba379e463390db7c981e422c938a70a005dd99aec67b7618a6e42d3d",
           "marketingVersion": "1.1.5.0"
-        },
-        {
-          "version": "2.1.2",
-          "buildVersion": "5316",
-          "date": "2026-08-30",
-          "localizedDescription": "自动检查更新改回当前仓库了，一些包名问题修了，追了上游的最新状态",
-          "downloadURL": "https://github.com/cnctem/PiliPlusX/releases/download/v1.1.4.9/PiliPlusX_ios_v1.1.4.9.ipa",
-          "size": 24069403,
-          "minOSVersion": "15.0",
-          "sha256": "e8a8cb3a7a0ade912140316372e544fcd1f033b66949b63aef5626baed1e0a22",
-          "marketingVersion": "1.1.4.9"
         }
       ]
     },
