@@ -396,6 +396,16 @@
       },
       "versions": [
         {
+          "version": "2.29.3",
+          "buildVersion": "191",
+          "date": "2026-10-05",
+          "localizedDescription": "## 升级前必读：请先导出备份\n\n本版本升级了 Android 安全存储，旧版安全存储可能无法直接兼容。请在升级安装前使用应用内导出功能备份数据；备份文件是包含 Cookie、API Key 和密码等凭据的明文 JSON，请妥善保管，并在恢复成功后立即删除。\n\n## Changes in this release\n# release: 2.29.3\n\n## ✨新增功能\n- 聚合搜索整合到首页，可在搜索面板切换当前站点或聚合搜索，搜索结果直接显示在首页。\n\n## 🐛修复问题\n- 支持在 iOS 种子详情页侧滑返回。\n- 修复标签展示设置未同步控制种子列表项标签的问题。\n\n\n## Secure-storage rollout\n\n- Phase: `phase1`\n- `ENABLE_SECURE_STORAGE_TRANSACTIONS`: `false`\n- Android versionCode: `191`\n- Source commit: `68651029bd3b7d449b9d01f023f76d84f4768449`\n\n## 📱 Android APK Downloads\n\n- **ARM64 APK** (arm64-v8a): For modern 64-bit devices\n\n## 💻 Desktop Downloads\n\n- **Windows x64**: Windows installer for 64-bit systems\n- **Linux x64**: Linux AppImage for 64-bit systems (portable, no installation required)\n- **macOS x64**: macOS DMG image for 64-bit systems\n- **macOS x64 (app)**: Zipped .app file for manual installation or use on systems where DMG is not preferred\n\n## 🍎 iOS Downloads\n\n- **Unsigned IPA**: For sideloading with tools like AltStore, Sideloadly, etc.\n- **Xcode Archive**: For developers to re-sign and distribute\n",
+          "downloadURL": "https://github.com/JustLookAtNow/pt_mate/releases/download/v2.29.3/pt_mate-2.29.3-unsigned.ipa",
+          "size": 14072806,
+          "minOSVersion": "15.0",
+          "sha256": "b91d040c90e9437d8669b47262f5b3192ca5c5c27ba75e1db7b96df96551346c"
+        },
+        {
           "version": "2.29.2",
           "buildVersion": "190",
           "date": "2026-09-30",
@@ -434,16 +444,6 @@
           "size": 13761318,
           "minOSVersion": "14.0",
           "sha256": "d56e55279cfbd9c99467aa8225e4c710febec6334196953f155bca2a90c9617d"
-        },
-        {
-          "version": "2.27.0",
-          "buildVersion": "159",
-          "date": "2026-07-15",
-          "localizedDescription": "## Changes in this release\n# release: 2.27.0\n\n## 🎉Highlights\n- 优化聚合搜索入口与弹窗交互，搜索操作更直观顺手。\n- 改进站点配置排序体验，调整站点顺序时反馈更清晰。\n\n## ✨新增功能\n- 支持 NexusPHP 仅提供分区分类的站点配置解析。\n\n## 🐛修复问题\n- 修复部分 NexusPHP 站点分类结构不完整时无法正确识别分类的问题。\n- 优化搜索弹框交互，减少入口与弹窗状态切换中的不一致体验。\n\n## 📋其它\n- 精简关于页面内容，移除项目能力说明。\n\n\n## 📱 Android APK Downloads\n\n- **ARM64 APK** (arm64-v8a): For modern 64-bit devices\n\n## 💻 Desktop Downloads\n\n- **Windows x64**: Windows installer for 64-bit systems\n- **Linux x64**: Linux AppImage for 64-bit systems (portable, no installation required)\n- **macOS x64**: macOS DMG image for 64-bit systems\n- **macOS x64 (app)**: Zipped .app file for manual installation or use on systems where DMG is not preferred\n\n## 🍎 iOS Downloads\n\n- **Unsigned IPA**: For sideloading with tools like AltStore, Sideloadly, etc.\n- **Xcode Archive**: For developers to re-sign and distribute\n",
-          "downloadURL": "https://github.com/JustLookAtNow/pt_mate/releases/download/v2.27.0/pt_mate-2.27.0-unsigned.ipa",
-          "size": 13503094,
-          "minOSVersion": "14.0",
-          "sha256": "f1908c116a70ab9f50186519c9456d4801b2cf2d906b012aff18608e5a143749"
         }
       ]
     }
