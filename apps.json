@@ -396,6 +396,16 @@
       },
       "versions": [
         {
+          "version": "2.29.5",
+          "buildVersion": "193",
+          "date": "2026-10-21",
+          "localizedDescription": "## Changes in this release\n# release: 2.29.5\n\n## ✨新增功能\n- 种子列表新增“左滑收藏，右滑下载”模式，可在设置中切换。\n- 配置备份与恢复支持保存种子列表滑动方式。\n\n## 🐛修复问题\n- 修复下载、收藏操作遇到部分超时异常时未能自动重试的问题。\n\n\n## Secure-storage rollout\n\n- Phase: `phase1`\n- `ENABLE_SECURE_STORAGE_TRANSACTIONS`: `false`\n- Android versionCode: `193`\n- Source commit: `5ae2f84b58ff186ad3250d546e6a2087d437be87`\n\n## 📱 Android APK Downloads\n\n- **ARM64 APK** (arm64-v8a): For modern 64-bit devices\n\n## 💻 Desktop Downloads\n\n- **Windows x64**: Windows installer for 64-bit systems\n- **Linux x64**: Linux AppImage for 64-bit systems (portable, no installation required)\n- **macOS x64**: macOS DMG image for 64-bit systems\n- **macOS x64 (app)**: Zipped .app file for manual installation or use on systems where DMG is not preferred\n\n## 🍎 iOS Downloads\n\n- **Unsigned IPA**: For sideloading with tools like AltStore, Sideloadly, etc.\n- **Xcode Archive**: For developers to re-sign and distribute\n",
+          "downloadURL": "https://github.com/JustLookAtNow/pt_mate/releases/download/v2.29.5/pt_mate-2.29.5-unsigned.ipa",
+          "size": 14084035,
+          "minOSVersion": "15.0",
+          "sha256": "f2de0f82e9d4ca0d01f15b2acbd7a2598ef9a7f6e2d44d535715a0072b23f991"
+        },
+        {
           "version": "2.29.4",
           "buildVersion": "192",
           "date": "2026-10-18",
@@ -434,16 +444,6 @@
           "size": 14013799,
           "minOSVersion": "15.0",
           "sha256": "15c712b1f6d40ed6079dd9b3312885c8b919ee3cececec646ba1ce99c13c1c86"
-        },
-        {
-          "version": "2.28.1",
-          "buildVersion": "187",
-          "date": "2026-08-18",
-          "localizedDescription": "## Changes in this release\n# release: 2.28.1\n\n## 🎉Highlights\n- 封面查看器全新升级：支持左右翻页浏览，并与列表滚动智能联动，浏览体验更流畅\n\n## ✨新增功能\n- 收藏和下载操作新增超时自动重试，弱网环境下更稳定\n- 封面查看器支持左右翻页并联动滚动列表\n\n## 🐛修复问题\n- 优惠标签支持分钟级倒计时，时间展示更精准\n- 修复分类名称过长时的显示问题，最多显示两行\n- 扩大封面加载失败后的重试点击区域，操作更易触发\n\n\n## Secure-storage rollout\n\n- Phase: `phase1`\n- `ENABLE_SECURE_STORAGE_TRANSACTIONS`: `false`\n- Android versionCode: `187`\n- Source commit: `b2972c751a734764bb55a6ce7d38fc3149858c75`\n\n## 📱 Android APK Downloads\n\n- **ARM64 APK** (arm64-v8a): For modern 64-bit devices\n\n## 💻 Desktop Downloads\n\n- **Windows x64**: Windows installer for 64-bit systems\n- **Linux x64**: Linux AppImage for 64-bit systems (portable, no installation required)\n- **macOS x64**: macOS DMG image for 64-bit systems\n- **macOS x64 (app)**: Zipped .app file for manual installation or use on systems where DMG is not preferred\n\n## 🍎 iOS Downloads\n\n- **Unsigned IPA**: For sideloading with tools like AltStore, Sideloadly, etc.\n- **Xcode Archive**: For developers to re-sign and distribute\n",
-          "downloadURL": "https://github.com/JustLookAtNow/pt_mate/releases/download/v2.28.1/pt_mate-2.28.1-unsigned.ipa",
-          "size": 13772453,
-          "minOSVersion": "14.0",
-          "sha256": "220628e3102cdc060f057b24d92708a8511f681d040cb3a6689a90b3afc7c74b"
         }
       ]
     }
