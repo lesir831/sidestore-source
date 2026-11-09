@@ -28,7 +28,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Test source generation and build selection
-        run: python3 -m unittest discover -s tests -v
+        run: env GITHUB_ACTIONS=false python3 -m unittest discover -s tests -v
       - name: Check latest Simple Live release
         id: plan
         env:
