@@ -191,6 +191,14 @@ def validate_config(config: dict[str, Any]) -> None:
             re.compile(pattern)
         except re.error as error:
             raise SourceError(f"Invalid assetPattern for {repository}: {error}") from error
+        fallback_repository = github.get("fallbackRepository")
+        if fallback_repository is not None and (
+            not isinstance(fallback_repository, str)
+            or re.fullmatch(r"[\w.-]+/[\w.-]+", fallback_repository) is None
+        ):
+            raise SourceError(f"Invalid fallbackRepository for {repository}")
+        if not isinstance(github.get("fallbackTagPrefix", ""), str):
+            raise SourceError(f"fallbackTagPrefix for {repository} must be a string")
         release_tag_pattern = github.get("releaseTagPattern")
         if release_tag_pattern is not None:
             if not isinstance(release_tag_pattern, str) or not release_tag_pattern:
@@ -223,6 +231,8 @@ def choose_releases(
     limit: int,
     release_tag_pattern: str | None = None,
     published_on_or_after: str | None = None,
+    fallback_releases: list[dict[str, Any]] | None = None,
+    fallback_tag_prefix: str = "",
 ) -> list[tuple[dict[str, Any], dict[str, Any]]]:
     asset_regex = re.compile(asset_pattern)
     release_tag_regex = re.compile(release_tag_pattern) if release_tag_pattern else None
@@ -230,6 +240,11 @@ def choose_releases(
         date.fromisoformat(published_on_or_after) if published_on_or_after else None
     )
     chosen: list[tuple[dict[str, Any], dict[str, Any]]] = []
+    fallbacks = {
+        release.get("tag_name"): release
+        for release in fallback_releases or []
+        if not release.get("draft") and not release.get("prerelease")
+    }
     for release in releases:
         if release.get("draft") or (release.get("prerelease") and not include_prereleases):
             continue
@@ -253,6 +268,13 @@ def choose_releases(
             for asset in release.get("assets", [])
             if isinstance(asset.get("name"), str) and asset_regex.fullmatch(asset["name"])
         ]
+        if not matches and isinstance(tag, str):
+            fallback = fallbacks.get(f"{fallback_tag_prefix}{tag}", {})
+            matches = [
+                asset
+                for asset in fallback.get("assets", [])
+                if isinstance(asset.get("name"), str) and asset_regex.fullmatch(asset["name"])
+            ]
         if not matches:
             continue
         if len(matches) > 1:
@@ -363,6 +385,17 @@ def build_source(
                 release_failures[repository] = error
 
         release_error = release_failures.get(repository)
+        fallback_repository = github.get("fallbackRepository")
+        if fallback_repository and release_error is None:
+            if fallback_repository not in release_snapshots and fallback_repository not in release_failures:
+                try:
+                    release_snapshots[fallback_repository] = client.releases(fallback_repository)
+                except SourceError as error:
+                    release_failures[fallback_repository] = error
+            if fallback_repository in release_failures:
+                # Keep the complete verified history instead of silently dropping
+                # a newer fallback build and reverting users to an older release.
+                release_error = release_failures[fallback_repository]
         if release_error is not None:
             releases = []
         else:
@@ -373,6 +406,8 @@ def build_source(
                 limit,
                 github.get("releaseTagPattern"),
                 github.get("publishedOnOrAfter"),
+                release_snapshots.get(fallback_repository, []),
+                github.get("fallbackTagPrefix", ""),
             )
         if not releases:
             versions = fallback_versions.get(metadata["bundleIdentifier"])

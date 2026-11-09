@@ -25,7 +25,10 @@
     {
       "github": {
         "repository": "June6699/dart_simple_live",
-        "assetPattern": "^ios_no_sign\\.ipa$"
+        "assetPattern": "^ios_no_sign\\.ipa$",
+        "releaseTagPattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+$",
+        "fallbackRepository": "lesir831/sidestore-source",
+        "fallbackTagPrefix": "simple-live-"
       },
       "metadata": {
         "name": "Simple Live",

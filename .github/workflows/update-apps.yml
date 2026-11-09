@@ -2,19 +2,136 @@ name: Update SideStore source
 
 on:
   schedule:
-    - cron: "0 * * * *"
+    - cron: "17 * * * *"
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: update-sidestore-source
   cancel-in-progress: false
 
 jobs:
-  update:
+  check:
     runs-on: ubuntu-latest
+    outputs:
+      build_needed: ${{ steps.plan.outputs.build_needed }}
+      repository: ${{ steps.plan.outputs.repository }}
+      tag: ${{ steps.plan.outputs.tag }}
+      release_tag: ${{ steps.plan.outputs.release_tag }}
+      sha: ${{ steps.plan.outputs.sha }}
+      version: ${{ steps.plan.outputs.version }}
+      build_version: ${{ steps.plan.outputs.build_version }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Test source generation and build selection
+        run: python3 -m unittest discover -s tests -v
+      - name: Check latest Simple Live release
+        id: plan
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 sync_simple_live.py plan
+
+  build-simple-live:
+    needs: check
+    if: needs.check.outputs.build_needed == 'true'
+    runs-on: macos-latest
+    timeout-minutes: 40
+    env:
+      FLUTTER_VERSION: "3.41.9"
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Check out the upstream release commit
+        uses: actions/checkout@v7
+        with:
+          repository: ${{ needs.check.outputs.repository }}
+          ref: ${{ needs.check.outputs.sha }}
+          path: upstream
+          persist-credentials: false
+      - name: Archive corresponding source
+        run: git -C upstream archive --format=tar.gz --prefix=SimpleLive/ --output="$GITHUB_WORKSPACE/SimpleLive-source.tar.gz" HEAD
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+      - name: Build unsigned iOS app
+        working-directory: upstream/simple_live_app
+        run: |
+          flutter pub get
+          flutter build ios --release --no-codesign
+      - name: Package unsigned IPA
+        working-directory: upstream/simple_live_app/build/ios/iphoneos
+        run: |
+          mkdir Payload
+          cp -R Runner.app Payload/Runner.app
+          zip -q -r "$GITHUB_WORKSPACE/ios_no_sign.ipa" Payload
+      - name: Verify IPA identity and version
+        env:
+          EXPECTED_VERSION: ${{ needs.check.outputs.version }}
+          EXPECTED_BUILD_VERSION: ${{ needs.check.outputs.build_version }}
+          UPSTREAM_TAG: ${{ needs.check.outputs.tag }}
+          UPSTREAM_SHA: ${{ needs.check.outputs.sha }}
+        run: python3 sync_simple_live.py verify --ipa ios_no_sign.ipa --output build-provenance.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: simple-live-release
+          if-no-files-found: error
+          path: |
+            ios_no_sign.ipa
+            SimpleLive-source.tar.gz
+            build-provenance.json
+
+  publish-simple-live:
+    needs: [check, build-simple-live]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      UPSTREAM_REPOSITORY: ${{ needs.check.outputs.repository }}
+      UPSTREAM_TAG: ${{ needs.check.outputs.tag }}
+      UPSTREAM_SHA: ${{ needs.check.outputs.sha }}
+      RELEASE_TAG: ${{ needs.check.outputs.release_tag }}
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: simple-live-release
+      - name: Publish verified IPA with source and provenance
+        run: |
+          gh release view "$UPSTREAM_TAG" --repo "$UPSTREAM_REPOSITORY" --json body --jq .body > release-notes.md
+          cat >> release-notes.md <<EOF
+
+          ---
+          Unofficial unsigned iOS build for SideStore / AltStore, built from the upstream release without application code changes.
+          Source: https://github.com/$UPSTREAM_REPOSITORY/tree/$UPSTREAM_SHA
+          Upstream release: https://github.com/$UPSTREAM_REPOSITORY/releases/tag/$UPSTREAM_TAG
+          Build: https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
+          The corresponding source archive and IPA SHA-256 / build metadata are attached.
+          EOF
+          # A draft makes retries safe: the feed cannot see a partially uploaded release.
+          if ! gh release view "$RELEASE_TAG" --json isDraft > release-state.json; then
+            gh release create "$RELEASE_TAG" --target "$GITHUB_SHA" --draft --title "Simple Live $UPSTREAM_TAG (unsigned iOS)" --notes-file release-notes.md
+          else
+            jq -e '.isDraft == true' release-state.json
+          fi
+          gh release upload "$RELEASE_TAG" ios_no_sign.ipa SimpleLive-source.tar.gz build-provenance.json --clobber
+          gh release edit "$RELEASE_TAG" --draft=false --latest=false --notes-file release-notes.md
+
+  update:
+    needs: [check, build-simple-live, publish-simple-live]
+    if: >-
+      always() && !cancelled() && needs.check.result == 'success' &&
+      (needs.build-simple-live.result == 'success' || needs.build-simple-live.result == 'skipped') &&
+      (needs.publish-simple-live.result == 'success' || needs.publish-simple-live.result == 'skipped')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
     env:
       GH_TOKEN: ${{ github.token }}
     steps:

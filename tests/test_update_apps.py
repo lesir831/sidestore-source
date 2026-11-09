@@ -96,6 +96,82 @@ class FailingReleaseClient(FakeClient):
 
 
 class SourceGeneratorTests(unittest.TestCase):
+    def test_missing_upstream_ipa_uses_matching_fallback_with_upstream_notes(self):
+        payload = make_ipa(version="1.13.3", build_version="11303")
+        latest = make_release(payload, tag="v1.13.3", body="Official release notes")
+        latest["assets"] = []
+        previous = make_release(payload, tag="v1.13.2")
+        fallback = make_release(payload, tag="simple-live-v1.13.3", body="Build provenance")
+        fallback["assets"][0]["browser_download_url"] = "https://example.com/fallback.ipa"
+        client = FakeClient(payload)
+        client.releases = lambda repository: (
+            [latest, previous] if repository == "owner/repository" else [fallback]
+        )
+        config = make_config()
+        config["apps"][0]["github"].update({
+            "fallbackRepository": "owner/builds", "fallbackTagPrefix": "simple-live-",
+        })
+
+        source, count = update_apps.build_source(config, {}, client)
+
+        versions = source["apps"][0]["versions"]
+        self.assertEqual(len(versions), 2)
+        self.assertEqual(count, 2)
+        self.assertEqual(versions[0]["downloadURL"], "https://example.com/fallback.ipa")
+        self.assertEqual(versions[0]["marketingVersion"], "1.13.3")
+        self.assertEqual(versions[0]["localizedDescription"], "Official release notes")
+
+        cached, count = update_apps.build_source(config, source, client)
+        self.assertEqual(count, 0)
+        self.assertEqual(cached, source)
+
+    def test_upstream_ipa_takes_priority_over_fallback(self):
+        payload = make_ipa()
+        upstream = make_release(payload)
+        fallback = make_release(payload, tag="build-v1.2.3")
+        fallback["assets"][0]["browser_download_url"] = "https://example.com/fallback.ipa"
+
+        chosen = update_apps.choose_releases(
+            [upstream], r".*\.ipa", False, 5,
+            fallback_releases=[fallback], fallback_tag_prefix="build-",
+        )
+
+        self.assertEqual(chosen, [(upstream, upstream["assets"][0])])
+
+    def test_fallback_needs_published_stable_upstream_release_and_exact_tag(self):
+        payload = make_ipa()
+        upstream = make_release(payload)
+        upstream["assets"] = []
+        for tag, draft, prerelease in (
+            ("build-v9.9.9", False, False),
+            ("build-v1.2.3", True, False),
+            ("build-v1.2.3", False, True),
+        ):
+            with self.subTest(tag=tag, draft=draft, prerelease=prerelease):
+                fallback = make_release(payload, tag=tag)
+                fallback.update(draft=draft, prerelease=prerelease)
+                self.assertEqual(update_apps.choose_releases(
+                    [upstream], r".*\.ipa", False, 5,
+                    fallback_releases=[fallback], fallback_tag_prefix="build-",
+                ), [])
+
+    def test_fallback_api_outage_keeps_verified_latest_version(self):
+        payload = make_ipa()
+        config = make_config()
+        existing, _ = update_apps.build_source(config, {}, FakeClient(payload))
+        config["apps"][0]["github"]["fallbackRepository"] = "owner/builds"
+        client = FakeClient(payload)
+
+        def releases(repository):
+            if repository == "owner/builds":
+                raise update_apps.SourceError("Fallback API unavailable")
+            return [client.release]
+
+        client.releases = releases
+        source, count = update_apps.build_source(config, existing, client)
+        self.assertEqual(source, existing)
+        self.assertEqual(count, 0)
+
     def test_reads_versions_from_ipa_and_uses_tag_only_for_marketing(self):
         payload = make_ipa()
         client = FakeClient(payload)
